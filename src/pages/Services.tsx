@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LuxuryButton } from '../components/LuxuryButton';
-import { ArrowRight, Check, Send, Globe, Palette, Megaphone, Camera, Newspaper, Scissors, PenTool, Package, Sparkles, CreditCard, FileText, MessageSquare, Mail, User, Building2 } from 'lucide-react';
+import { ArrowRight, Check, Send, Globe, Palette, Megaphone, Camera, Newspaper, Scissors, PenTool, Package, Sparkles, CreditCard, FileText, MessageSquare, Mail, User, Building2, type LucideIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface ServicesProps {
@@ -18,12 +18,20 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const servicesData = [
+  const servicesData: {
+    id: number;
+    title: string;
+    subtitle: string;
+    icon: LucideIcon;
+    tagline: string;
+    bullets: string[];
+    outcome: string;
+  }[] = [
     {
       id: 0,
       title: 'Shopify Development',
       subtitle: 'E-COMMERCE ENGINEERING',
-      icon: <Globe className="w-6 h-6" />,
+      icon: Globe,
       tagline: 'Bespoke Shopify stores engineered for conversion, speed, and scale.',
       bullets: [
         'Custom Liquid & Hydrogen headless storefronts',
@@ -38,7 +46,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 1,
       title: 'Brand Building',
       subtitle: 'IDENTITY & POSITIONING',
-      icon: <Palette className="w-6 h-6" />,
+      icon: Palette,
       tagline: 'Forge a brand identity that commands attention and builds trust.',
       bullets: [
         'Strategic brand positioning & market differentiation',
@@ -53,7 +61,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 2,
       title: 'Digital Marketing',
       subtitle: 'GROWTH & ACQUISITION',
-      icon: <Megaphone className="w-6 h-6" />,
+      icon: Megaphone,
       tagline: 'Data-driven campaigns that amplify reach and drive revenue.',
       bullets: [
         'SEO, SEM & paid media strategy & execution',
@@ -68,7 +76,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 3,
       title: 'Photoshoot & Media',
       subtitle: 'VISUAL PRODUCTION',
-      icon: <Camera className="w-6 h-6" />,
+      icon: Camera,
       tagline: 'Stunning visuals that tell your brand story and sell products.',
       bullets: [
         'Editorial & e-commerce photography direction',
@@ -83,7 +91,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 4,
       title: 'PR',
       subtitle: 'PRESS & PUBLIC RELATIONS',
-      icon: <Newspaper className="w-6 h-6" />,
+      icon: Newspaper,
       tagline: 'Earned media coverage that builds credibility and buzz.',
       bullets: [
         'Press release writing & media pitch strategy',
@@ -98,7 +106,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 5,
       title: 'Fabric Sourcing',
       subtitle: 'MATERIAL SUPPLY CHAIN',
-      icon: <Scissors className="w-6 h-6" />,
+      icon: Scissors,
       tagline: 'Direct access to historic mills and premium textile suppliers.',
       bullets: [
         'Direct mill partnerships across Paris, Milan, Lyon',
@@ -113,7 +121,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 6,
       title: 'Designing',
       subtitle: 'CREATIVE DIRECTION',
-      icon: <PenTool className="w-6 h-6" />,
+      icon: PenTool,
       tagline: 'From concept to creation — design that defines your vision.',
       bullets: [
         'Collection concept & mood board development',
@@ -128,7 +136,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 7,
       title: 'Production Support',
       subtitle: 'MANUFACTURING & LOGISTICS',
-      icon: <Package className="w-6 h-6" />,
+      icon: Package,
       tagline: 'End-to-end production management from factory to fulfillment.',
       bullets: [
         'Factory vetting, negotiation & relationship management',
@@ -143,7 +151,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 8,
       title: 'Styling',
       subtitle: 'VISUAL MERCHANDISING',
-      icon: <Sparkles className="w-6 h-6" />,
+      icon: Sparkles,
       tagline: 'Curated styling that brings your brand aesthetic to life.',
       bullets: [
         'Editorial & campaign styling direction',
@@ -158,7 +166,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 9,
       title: 'Payment Integrations',
       subtitle: 'FINANCIAL INFRASTRUCTURE',
-      icon: <CreditCard className="w-6 h-6" />,
+      icon: CreditCard,
       tagline: 'Seamless, secure checkout experiences that reduce friction.',
       bullets: [
         'Shopify Payments, Stripe & gateway configuration',
@@ -173,7 +181,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
       id: 10,
       title: 'Content Creation',
       subtitle: 'DIGITAL ASSETS',
-      icon: <FileText className="w-6 h-6" />,
+      icon: FileText,
       tagline: 'Scroll-stopping content tailored for every platform.',
       bullets: [
         'Social media graphics, carousels & Reels/TikToks',
@@ -210,53 +218,66 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
           <div className="h-px w-20 bg-white mx-auto" />
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start pb-32 border-b-2 border-white/10">
+        {/* Services Grid — white & red surfaces on brand red page */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch pb-32 border-b-2 border-white/10">
 
           {/* Left: Service Tabs */}
-          <div className="lg:col-span-5 flex flex-col gap-2">
-            <span className="text-[10px] tracking-[0.2em] font-bold text-bw-gray uppercase block mb-3">
+          <div className="lg:col-span-5 flex flex-col gap-2 p-4 md:p-5 bg-white border-2 border-white shadow-lg shadow-black/10">
+            <span className="text-[10px] tracking-[0.2em] font-bold text-bw-red uppercase block mb-2 px-1">
               Select a Service
             </span>
-            {servicesData.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveTab(idx)}
-                className={`w-full text-left p-5 border-2 transition-all duration-300 flex items-center justify-between group cursor-pointer ${
-                  activeTab === idx
-                    ? 'bg-bw-card text-white border-bw-card'
-                    : 'bg-bw-offwhite border-bw-gray-light hover:border-white text-white'
-                }`}
-              >
-                <div className="flex items-center gap-4">
-                  <div className={`p-2.5 rounded-full border transition-all duration-300 ${
-                    activeTab === idx
-                      ? 'border-white/20 bg-white/10'
-                      : 'border-bw-gray-light bg-white'
-                  }`}>
-                    {item.icon}
-                  </div>
-                  <div>
-                    <span className="font-display text-xs tracking-wide font-extrabold uppercase">
-                      {item.title}
-                    </span>
-                    <span className={`text-[8px] tracking-widest font-bold block uppercase mt-0.5 ${
-                      activeTab === idx ? 'text-white/40' : 'text-bw-gray'
+            {servicesData.map((item, idx) => {
+              const isActive = activeTab === idx;
+              const Icon = item.icon;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setActiveTab(idx)}
+                  className={`w-full text-left p-4 md:p-5 border-2 transition-all duration-300 flex items-center justify-between group cursor-pointer ${
+                    isActive
+                      ? 'bg-bw-red text-white border-bw-red shadow-md'
+                      : 'bg-white text-bw-black border-bw-red/15 hover:border-bw-red/40 hover:bg-bw-red/[0.04]'
+                  }`}
+                >
+                  <div className="flex items-center gap-4 min-w-0">
+                    <div className={`p-2.5 rounded-full border shrink-0 transition-all duration-300 ${
+                      isActive
+                        ? 'border-white/30 bg-white/15 text-white'
+                        : 'border-bw-red/25 bg-bw-red/10 text-bw-red'
                     }`}>
-                      {item.subtitle}
-                    </span>
+                      <Icon className="w-5 h-5" strokeWidth={2} />
+                    </div>
+                    <div className="min-w-0">
+                      <span className={`font-display text-xs tracking-wide font-extrabold uppercase block truncate ${
+                        isActive ? 'text-white' : 'text-bw-black'
+                      }`}>
+                        {item.title}
+                      </span>
+                      <span className={`text-[8px] tracking-widest font-bold block uppercase mt-0.5 truncate ${
+                        isActive ? 'text-white/65' : 'text-bw-red/70'
+                      }`}>
+                        {item.subtitle}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <ArrowRight className={`w-4 h-4 transition-all duration-300 ${
-                   activeTab === idx ? 'text-white rotate-45 translate-x-1' : 'text-bw-gray group-hover:text-white'
-                }`} />
-              </button>
-            ))}
+                  <ArrowRight className={`w-4 h-4 shrink-0 ml-3 transition-all duration-300 ${
+                    isActive
+                      ? 'text-white rotate-45 translate-x-0.5'
+                      : 'text-bw-red/35 group-hover:text-bw-red group-hover:translate-x-0.5'
+                  }`} />
+                </button>
+              );
+            })}
           </div>
 
-          {/* Right: Detail Panel */}
-          <div className="lg:col-span-7 bg-bw-card border-2 border-white/10 p-8 md:p-12 relative overflow-hidden flex flex-col justify-between min-h-[540px]">
-            <div className="absolute top-0 right-0 w-28 h-28 bg-bw-offwhite blur-xl pointer-events-none" />
+          {/* Right: Detail Panel — cream/white card, red accents (reference layout) */}
+          <div className="lg:col-span-7 bg-bw-cream border border-black/5 p-8 md:p-12 lg:p-14 relative overflow-hidden flex flex-col justify-between min-h-[540px] shadow-[0_8px_40px_rgba(0,0,0,0.08)]">
+            <div
+              className="absolute inset-0 opacity-[0.35] pointer-events-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
+              }}
+            />
 
             <AnimatePresence mode="wait">
               <motion.div
@@ -265,26 +286,25 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.25 }}
+                className="relative z-10"
               >
-                <span className="text-[10px] tracking-[0.3em] font-bold text-bw-gray-dark uppercase block mb-2">
+                <span className="text-[10px] tracking-[0.3em] font-bold text-bw-red-dark uppercase block mb-4">
                   {servicesData[activeTab].subtitle}
                 </span>
-                <h2 className="font-display text-3xl md:text-4xl font-black text-white tracking-tight mb-6">
+                <h2 className="font-editorial text-4xl md:text-5xl font-bold text-bw-red-dark tracking-tight mb-6 leading-[1.1]">
                   {servicesData[activeTab].title}
                 </h2>
-                <p className="text-sm font-medium text-bw-gray italic leading-relaxed mb-8 border-l-2 border-white pl-4">
+                <p className="font-editorial text-base md:text-lg font-medium text-bw-red-dark italic leading-relaxed mb-10 border-l-2 border-bw-red-dark pl-5 max-w-xl">
                   &ldquo;{servicesData[activeTab].tagline}&rdquo;
                 </p>
 
-                <h3 className="text-[10px] tracking-[0.2em] font-bold text-bw-gray uppercase mb-4">
+                <h3 className="text-[10px] tracking-[0.2em] font-bold text-bw-red-dark uppercase mb-4">
                   What You Get
                 </h3>
-                <ul className="grid grid-cols-1 gap-3 mb-8">
+                <ul className="grid grid-cols-1 gap-3.5 mb-8">
                   {servicesData[activeTab].bullets.map((bullet, bIdx) => (
-                    <li key={bIdx} className="flex items-start gap-2.5 text-xs font-semibold text-bw-gray-dark">
-                      <div className="w-4 h-4 rounded-full bg-bw-offwhite border border-bw-gray-light flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-2.5 h-2.5 text-white stroke-[3]" />
-                      </div>
+                    <li key={bIdx} className="flex items-start gap-3 text-sm font-medium text-bw-black leading-snug">
+                      <Check className="w-4 h-4 text-bw-red-dark shrink-0 mt-0.5 stroke-[2.5]" />
                       <span>{bullet}</span>
                     </li>
                   ))}
@@ -292,17 +312,22 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
               </motion.div>
             </AnimatePresence>
 
-            <div className="border-t-2 border-white/10 pt-8 mt-6">
-              <h3 className="text-[10px] tracking-[0.2em] font-bold text-bw-gray uppercase mb-2">
+            <div className="border-t border-bw-red-dark/15 pt-8 mt-6 relative z-10">
+              <h3 className="text-[10px] tracking-[0.2em] font-bold text-bw-red-dark uppercase mb-3">
                 Expected Outcome
               </h3>
-              <p className="text-xs font-medium text-bw-gray-dark leading-relaxed mb-6">
+              <p className="text-sm font-medium text-bw-black leading-relaxed mb-8 max-w-2xl">
                 {servicesData[activeTab].outcome}
               </p>
 
-              <LuxuryButton variant="plain" onClick={() => estimatorRef.current?.scrollIntoView({ behavior: 'smooth' })}>
+              <button
+                type="button"
+                onClick={() => estimatorRef.current?.scrollIntoView({ behavior: 'smooth' })}
+                className="group inline-flex items-center gap-2.5 rounded-full bg-bw-red-dark px-8 py-3.5 text-[11px] font-bold tracking-[0.28em] text-white uppercase shadow-md shadow-bw-red-dark/30 transition-all duration-300 hover:bg-bw-red hover:shadow-lg cursor-pointer"
+              >
                 Get in Touch
-              </LuxuryButton>
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </button>
             </div>
           </div>
 
@@ -328,9 +353,9 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
               <motion.div
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="p-12 bg-bw-offwhite border-2 border-white/10 text-center flex flex-col items-center gap-4"
+                className="p-12 bg-bw-black border-2 border-white/20 text-center flex flex-col items-center gap-4 rounded-sm"
               >
-                <div className="w-16 h-16 rounded-full bg-bw-card flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-bw-red flex items-center justify-center">
                   <Check className="w-8 h-8 text-white stroke-[3]" />
                 </div>
                 <span className="font-display text-xl font-black text-white uppercase tracking-[0.15em]">
@@ -341,7 +366,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
                 </span>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="bg-bw-offwhite border-2 border-white/10 p-8 md:p-12">
+              <form onSubmit={handleSubmit} className="bg-bw-black border-2 border-white/20 p-8 md:p-12 rounded-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label className="text-[10px] tracking-[0.25em] font-bold text-bw-gray uppercase block mb-3">

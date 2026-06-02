@@ -13,12 +13,13 @@
   --color-bw-red-dark: #CC0000;
   --color-bw-black: #0a0a0a;
   --color-bw-white: #ffffff;
+  --color-bw-cream: #F8F6F3;
   --color-bw-offwhite: #141414;
+  --color-bw-surface: #1a1a1a;
   --color-bw-gray: rgba(255, 255, 255, 0.60);
   --color-bw-gray-light: rgba(255, 255, 255, 0.10);
   --color-bw-gray-dark: rgba(255, 255, 255, 0.90);
   --color-bw-card: #CC0000;
-  --color-bw-offwhite: #E61414;
 
   --animate-fade-in-up: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in: fade-in 1s ease-out forwards;
