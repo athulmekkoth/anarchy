@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { LuxuryButton } from '../components/LuxuryButton';
-import { AntLogo } from '../components/AntLogo';
 import { PortraitVideoReel } from '../components/PortraitVideoReel';
 import { ArrowUpRight, Sparkles, Compass, Eye, Scissors, Store } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -10,6 +9,7 @@ import { motion } from 'framer-motion';
 import fabricImg from '../assets/luxury_fabric.png';
 import boutiqueImg from '../assets/boutique_paris.png';
 import photoshootImg from '../assets/editorial_photoshoot.png';
+import heroImg from '../assets/hero.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,11 +20,9 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = ({ setActiveView }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const heroRef = useRef<HTMLElement>(null);
-  const antRef = useRef<HTMLDivElement>(null);
   const heroTextRef = useRef<HTMLHeadingElement>(null);
   const heroSubRef = useRef<HTMLDivElement>(null);
   const heroCTARef = useRef<HTMLDivElement>(null);
-  const [activePillar, setActivePillar] = useState<number | null>(null);
   const mouseRef = useRef({ x: 0, y: 0, tx: 0, ty: 0 });
 
   useEffect(() => {
@@ -152,40 +150,23 @@ export const Home: React.FC<HomeProps> = ({ setActiveView }) => {
 
       loadTl
         .fromTo(
-          antRef.current,
-          { rotate: 30, scale: 0.4, opacity: 0 },
-          { rotate: 0, scale: 1, opacity: 1, duration: 1.4, ease: 'back.out(1.4)' },
-          0
-        )
-        .fromTo(
           heroTextRef.current,
           { y: 40, opacity: 0, scale: 0.95 },
           { y: 0, opacity: 1, scale: 1, duration: 1.2 },
-          0.3
+          0
         )
         .fromTo(
           heroSubRef.current,
           { y: 20, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8 },
-          0.7
+          0.4
         )
         .fromTo(
           heroCTARef.current,
           { y: 15, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.6 },
-          1.0
+          0.7
         );
-
-      gsap.to(antRef.current, {
-        rotate: 180,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1,
-        },
-      });
     }, heroRef);
 
     return () => ctx.revert();
@@ -261,10 +242,6 @@ export const Home: React.FC<HomeProps> = ({ setActiveView }) => {
       {/* Hero Section */}
       <section ref={heroRef} id="atelier" className="relative min-h-screen flex items-center justify-center px-4 md:px-8 z-10 overflow-hidden">
         
-        <div ref={antRef} className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none" style={{ transform: 'scale(2.5)' }}>
-          <AntLogo size={400} color="#ffffff" />
-        </div>
-
         <div className="w-full text-center">
           
           {/* <div className="flex items-center justify-center gap-3 mb-4 md:mb-8">
@@ -313,8 +290,139 @@ export const Home: React.FC<HomeProps> = ({ setActiveView }) => {
         </div>
       </section>
 
+
+
+
+
+
+
+
+      <section id="collage" className="relative py-24 md:py-32 px-4 md:px-12 border-t border-white/10 z-10 bg-bw-red overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 md:mb-20">
+            <span className="text-[10px] tracking-[0.3em] font-bold text-bw-gray uppercase block mb-3">
+              Selected Moments
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-black text-white tracking-tight">
+              The Moodboard
+            </h2>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[180px] md:auto-rows-[220px]"
+          >
+            {/* Row 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="row-span-2 overflow-hidden border border-white/20 shadow-xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={photoshootImg} alt="Editorial" className="w-full h-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="overflow-hidden border border-white/20 shadow-xl rotate-[1deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={fabricImg} alt="Fabric" className="w-full h-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="row-span-2 overflow-hidden border border-white/20 shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={heroImg} alt="Hero" className="w-full h-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="overflow-hidden border border-white/20 shadow-xl rotate-[-1deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={boutiqueImg} alt="Boutique" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Row 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="overflow-hidden border border-white/20 shadow-xl rotate-[1.5deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={boutiqueImg} alt="Boutique detail" className="w-full h-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.35 }}
+              className="overflow-hidden border border-white/20 shadow-xl rotate-[-1.5deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={fabricImg} alt="Fabric detail" className="w-full h-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="row-span-2 overflow-hidden border border-white/20 shadow-xl rotate-[1deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={photoshootImg} alt="Editorial detail" className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Row 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.45 }}
+              className="overflow-hidden border border-white/20 shadow-xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={heroImg} alt="Hero detail" className="w-full h-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="overflow-hidden border border-white/20 shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={fabricImg} alt="Texture" className="w-full h-full object-cover" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.55 }}
+              className="overflow-hidden border border-white/20 shadow-xl rotate-[-1deg] hover:rotate-0 transition-transform duration-500"
+            >
+              <img src={boutiqueImg} alt="Spatial" className="w-full h-full object-cover" />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+      
       {/* Philosophy */}
-      <section id="manifest" className="relative py-28 px-8 md:px-12 border-t border-white/5 z-10 bg-bw-offwhite">
+      <section id="manifest" className="relative py-28 px-8 md:px-12 border-t border-white/5 z-10 bg-bw-red">
         <div className="max-w-4xl mx-auto text-center relative">
           <motion.span
             initial={{ opacity: 0 }}
@@ -341,75 +449,46 @@ export const Home: React.FC<HomeProps> = ({ setActiveView }) => {
       </section>
 
       {/* The Five Pillars */}
-      <section id="services" className="relative py-32 px-8 md:px-12 border-t border-white/10 z-10 bg-bw-red">
+      <section id="services" className="relative py-32 px-8 md:px-12 border-t border-black/5 z-10 bg-bw-white">
         <div className="max-w-7xl mx-auto">
-          
+
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-20 gap-6">
             <div>
-              <span className="text-[10px] tracking-[0.3em] font-bold text-bw-gray uppercase block mb-4">
+              <span className="text-[10px] tracking-[0.3em] font-bold text-bw-red uppercase block mb-4">
                 The Five Disciplines
               </span>
-              <h2 className="font-display text-4xl sm:text-5xl font-black text-white tracking-tight">
+              <h2 className="font-display text-4xl sm:text-5xl font-black text-bw-red tracking-tight">
                 Our Services
               </h2>
             </div>
-            <p className="text-sm font-medium text-bw-gray max-w-sm leading-relaxed">
+            <p className="text-sm font-medium text-bw-black/60 max-w-sm leading-relaxed">
               We guide premium brands through full-spectrum transformation, from material sourcing to digital architecture and physical retail.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 border-2 border-white/10 divide-y lg:divide-y-0 lg:divide-x divide-white/10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-px bg-bw-red/10">
             {pillars.map((pillar, idx) => (
               <motion.div
                 key={idx}
-                className={`p-8 md:p-10 transition-all duration-500 ease-out cursor-pointer relative group ${
-                  activePillar === idx ? 'bg-bw-card text-white' : 'bg-transparent text-white'
-                }`}
-                onMouseEnter={() => setActivePillar(idx)}
-                onMouseLeave={() => setActivePillar(null)}
+                className="bg-bw-white p-8 md:p-10 cursor-pointer group"
                 onClick={() => setActiveView('services')}
-                whileHover={{ y: -3 }}
+                whileHover={{ y: -4 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                <motion.span 
-                  className="absolute top-0 left-0 w-full h-[2px] bg-white origin-left"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: activePillar === idx ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                />
+                <span className="font-display text-5xl md:text-6xl font-black text-bw-red block mb-6">
+                  {pillar.num}
+                </span>
 
-                <div className="flex items-center justify-between mb-12">
-                  <span className={`font-display text-5xl font-black transition-colors duration-500 ${
-                    activePillar === idx ? 'text-white/20' : 'text-white/10 group-hover:text-white/20'
-                  }`}>
-                    {pillar.num}
-                  </span>
-                  <div className={`p-3 rounded-full border transition-all duration-500 ${
-                    activePillar === idx
-                      ? 'border-white/20 bg-white/10 text-white'
-                      : 'border-bw-gray-light bg-bw-offwhite group-hover:border-white/30 group-hover:bg-white/5'
-                  }`}>
-                    {pillar.icon}
-                  </div>
-                </div>
-
-                <h3 className={`font-display text-sm tracking-[0.1em] font-extrabold transition-colors duration-500 mb-6 uppercase ${
-                  activePillar === idx ? 'text-white' : 'text-white group-hover:text-white'
-                }`}>
+                <h3 className="font-display text-sm tracking-[0.1em] font-extrabold text-bw-red mb-4 uppercase">
                   {pillar.title}
                 </h3>
 
-                <p className={`text-xs font-medium leading-relaxed transition-colors duration-500 ${
-                  activePillar === idx ? 'text-white/60' : 'text-bw-gray group-hover:text-bw-gray-dark'
-                }`}>
+                <p className="text-xs font-medium text-bw-red/70 leading-relaxed mb-8">
                   {pillar.desc}
                 </p>
 
-                <div className={`mt-12 flex items-center gap-1.5 text-[10px] tracking-[0.2em] font-bold transition-all duration-500 ${
-                  activePillar === idx ? 'text-white opacity-100 translate-y-0' : 'text-white opacity-0 translate-y-2'
-                }`}>
-                  <span>LEARN MORE</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 text-[10px] tracking-[0.2em] font-bold text-bw-red">
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </motion.div>
             ))}
@@ -425,7 +504,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveView }) => {
       </section>
 
       {/* Creative Showcase */}
-      <section id="showcase" className="relative py-32 px-8 md:px-12 border-t border-white/5 z-10 bg-bw-offwhite">
+      <section id="showcase" className="relative py-32 px-8 md:px-12 border-t border-white/5 z-10 bg-bw-red">
         <div className="max-w-7xl mx-auto">
           
           <div className="text-center mb-24">
@@ -561,6 +640,9 @@ export const Home: React.FC<HomeProps> = ({ setActiveView }) => {
 
         </div>
       </section>
+
+      {/* Scattered Collage — Homescreen Moodboard */}
+
 
       {/* Portrait Video Reel */}
       <section

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { LuxuryButton } from '../components/LuxuryButton';
 import { ArrowRight, Check, Send, Globe, Palette, Megaphone, Camera, Newspaper, Scissors, PenTool, Package, Sparkles, CreditCard, FileText, MessageSquare, Mail, User, Building2, type LucideIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -249,7 +248,7 @@ export const Services: React.FC<ServicesProps> = ({ estimatorRef }) => {
                     </div>
                     <div className="min-w-0">
                       <span className={`font-display text-xs tracking-wide font-extrabold uppercase block truncate ${
-                        isActive ? 'text-white' : 'text-bw-black'
+                        isActive ? 'text-white' : 'text-bw-red'
                       }`}>
                         {item.title}
                       </span>
