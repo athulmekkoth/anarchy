@@ -26,7 +26,7 @@ export const LuxuryButton: React.FC<LuxuryButtonProps> = ({
         onClick={onClick}
         whileHover="hover"
         whileTap="tap"
-        className={`group relative text-xs tracking-[0.25em] uppercase font-bold text-white transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+        className={`group relative text-xs tracking-[0.25em] uppercase font-bold text-bw-white transition-all duration-300 flex items-center gap-2 cursor-pointer ${
           disabled ? 'opacity-40 cursor-not-allowed' : ''
         } ${className}`}
       >
@@ -41,7 +41,7 @@ export const LuxuryButton: React.FC<LuxuryButtonProps> = ({
           </motion.span>
         </span>
         <motion.span
-          className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-white origin-left"
+          className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-bw-white origin-left"
           initial={{ scaleX: 0 }}
           variants={{ hover: { scaleX: 1 } }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -58,12 +58,12 @@ export const LuxuryButton: React.FC<LuxuryButtonProps> = ({
         onClick={onClick}
         whileHover="hover"
         whileTap="tap"
-        className={`relative px-8 py-3.5 bg-transparent text-[11px] tracking-[0.3em] uppercase font-bold text-white border-2 border-white transition-all duration-300 cursor-pointer ${
+        className={`relative px-8 py-3.5 bg-transparent text-[11px] tracking-[0.3em] uppercase font-bold text-bw-white border-2 border-bw-white transition-all duration-300 cursor-pointer ${
           disabled ? 'opacity-40 cursor-not-allowed' : ''
         } ${className}`}
       >
         <motion.span
-          className="absolute inset-0 bg-white z-0 origin-bottom"
+          className="absolute inset-0 bg-bw-white z-0 origin-bottom"
           initial={{ scaleY: 0 }}
           variants={{ hover: { scaleY: 1 } }}
           transition={{ type: 'tween', ease: 'easeOut', duration: 0.25 }}
@@ -82,7 +82,7 @@ export const LuxuryButton: React.FC<LuxuryButtonProps> = ({
       onClick={onClick}
       whileHover="hover"
       whileTap="tap"
-      className={`group relative px-9 py-4 bg-white text-bw-red font-bold text-[11px] tracking-[0.3em] uppercase overflow-hidden cursor-pointer ${
+      className={`group relative px-9 py-4 bg-bw-white text-bw-red font-bold text-[11px] tracking-[0.3em] uppercase overflow-hidden cursor-pointer ${
         disabled ? 'opacity-40 cursor-not-allowed' : ''
       } ${className}`}
       variants={{

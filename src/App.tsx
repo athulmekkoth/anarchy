@@ -20,9 +20,13 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleNavigate = (view: 'home' | 'services') => {
+    setActiveView(view);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <div className="relative min-h-screen bg-bw-red text-bw-white selection:bg-white selection:text-bw-red overflow-x-hidden flex flex-col justify-between">
-      
+    <div className="relative min-h-screen bg-bw-red text-bw-white selection:bg-bw-white selection:text-bw-red overflow-x-hidden flex flex-col justify-between">
       <Navbar
         activeView={activeView}
         setActiveView={setActiveView}
@@ -31,14 +35,13 @@ function App() {
 
       <main className="flex-grow">
         {activeView === 'home' ? (
-          <Home setActiveView={setActiveView} />
+          <Home setActiveView={handleNavigate} />
         ) : (
           <Services estimatorRef={estimatorRef} />
         )}
       </main>
 
       <Footer onNavigateHome={handleNavigateHome} />
-      
     </div>
   );
 }

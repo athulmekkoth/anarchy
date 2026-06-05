@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, setActiveView, onScr
         transition={{ type: 'spring', stiffness: 100, damping: 18 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out border-b ${
           isScrolled
-            ? 'py-4 glass-white border-white/5'
+            ? 'py-4 glass-white border-bw-white/5'
             : 'py-8 bg-transparent border-transparent'
         }`}
       >
@@ -64,10 +64,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, setActiveView, onScr
             onClick={() => handleNavClick('home')}
             className="flex flex-col items-start cursor-pointer group text-left"
           >
-            <span className="font-display text-2xl md:text-3xl font-black tracking-[0.15em] text-white group-hover:text-white/80 transition-colors duration-500">
+            <span className="font-brutal text-2xl md:text-3xl font-black tracking-[0.15em] text-bw-white group-hover:text-bw-white/80 transition-colors duration-500">
               ANARCHY
             </span>
-            <span className="text-[8px] font-extrabold tracking-[0.45em] text-white/60 uppercase group-hover:text-white transition-colors duration-500 -mt-0.5">
+            <span className="text-[8px] font-extrabold tracking-[0.45em] text-bw-white/60 uppercase group-hover:text-bw-white transition-colors duration-500 -mt-0.5">
               ANTS
             </span>
           </motion.button>
@@ -82,15 +82,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, setActiveView, onScr
                 <button
                   key={idx}
                   onClick={item.action}
-                  className={`relative py-1 text-[11px] tracking-[0.3em] font-semibold uppercase transition-colors duration-500 hover:text-white cursor-pointer ${
-                    isItemActive ? 'text-white' : 'text-white/60'
+                  className={`relative py-1 text-[11px] tracking-[0.3em] font-semibold uppercase transition-colors duration-500 hover:text-bw-white cursor-pointer ${
+                    isItemActive ? 'text-bw-white' : 'text-bw-white/60'
                   }`}
                 >
                   {item.label}
                   {isItemActive && (
                     <motion.span
                       layoutId="activeNavLine"
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-white"
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-bw-white"
                       transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                     />
                   )}
@@ -114,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, setActiveView, onScr
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-full border border-white/20 bg-white text-bw-red hover:bg-bw-offwhite transition-colors duration-300 cursor-pointer"
+              className="p-2.5 rounded-full border border-bw-white/20 bg-bw-white text-bw-red hover:bg-bw-offwhite transition-colors duration-300 cursor-pointer"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -130,12 +130,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, setActiveView, onScr
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-bw-card text-white flex flex-col justify-center px-12 md:hidden"
+            className="fixed inset-0 z-40 bg-bw-card text-bw-white flex flex-col justify-center px-12 md:hidden"
           >
             <div className="absolute top-6 left-6">
-              <span className="font-display text-2xl font-black tracking-[0.15em] text-white">ANARCHY</span>
+              <span className="font-brutal text-2xl font-black tracking-[0.15em] text-bw-white">ANARCHY</span>
             </div>
-            
+
             <nav className="flex flex-col gap-10 relative z-10">
               {menuItems.map((item, idx) => (
                 <motion.button
@@ -144,8 +144,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, setActiveView, onScr
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + idx * 0.1, type: 'spring', stiffness: 200 }}
                   onClick={item.action}
-                  className={`font-display text-4xl text-left font-black tracking-wide transition-all duration-300 ${
-                    activeView === item.view ? 'text-white bg-white/10 -mx-4 px-4 py-2' : 'text-white/60 hover:text-white'
+                  className={`font-brutal text-4xl text-left font-black tracking-wide transition-all duration-300 ${
+                    activeView === item.view ? 'text-bw-white bg-bw-white/10 -mx-4 px-4 py-2' : 'text-bw-white/60 hover:text-bw-white'
                   }`}
                 >
                   {item.label}
@@ -157,10 +157,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeView, setActiveView, onScr
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="absolute bottom-12 left-12 right-12 flex flex-col gap-4 border-t border-white/10 pt-8"
+              className="absolute bottom-12 left-12 right-12 flex flex-col gap-4 border-t border-bw-white/10 pt-8"
             >
-              <span className="text-[10px] tracking-[0.25em] font-bold text-white uppercase">ANARCHY ANTS</span>
-              <span className="text-xs text-white/40 tracking-wider">Paris, France</span>
+              <span className="text-[10px] tracking-[0.25em] font-bold text-bw-white uppercase">ANARCHY ANTS</span>
+              <span className="text-xs text-bw-white/40 tracking-wider">Paris, France</span>
             </motion.div>
           </motion.div>
         )}
